@@ -20,7 +20,8 @@ public class PersonMapper {
 		public List<PersonVO> mapPersonDOtoList(List<Person> persons){
 			List<PersonVO> personList = new ArrayList<PersonVO>(persons.size());
 			persons.forEach(person -> {			
-				mapPersonDOtoVO(person);
+				PersonVO personVO = mapPersonDOtoVO(person);
+				personList.add(personVO);
 			});
 			return personList;
 		}

@@ -11,7 +11,7 @@ public interface PersonService {
 	
 	public List<PersonVO> getAllPersonDetails() throws PersonException;
 	
-	public PersonVO updatePersonDetails(long id);
+	public PersonVO updatePersonDetails(long id,PersonVO personVO);
 	
 	public PersonVO deletePerson(long id);
 	

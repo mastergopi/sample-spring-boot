@@ -35,7 +35,7 @@ public class PersonServiceImpl implements PersonService{
 	}
 
 	@Override
-	public PersonVO updatePersonDetails(long id) {
+	public PersonVO updatePersonDetails(long id, PersonVO personVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
