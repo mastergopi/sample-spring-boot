@@ -11,10 +11,10 @@ public interface PersonService {
 	
 	public List<PersonVO> getAllPersonDetails() throws PersonException;
 	
-	public PersonVO updatePersonDetails(long id,PersonVO personVO);
+	public PersonVO updatePersonDetails(long id,PersonVO personVO) throws PersonException;
 	
-	public PersonVO deletePerson(long id);
+	public void deletePerson(long id) throws PersonException;
 	
-	public List<PersonVO> getPersonsByAge();
+	public List<PersonVO> getPersonsByAge(int age) throws PersonException;
 	
 }

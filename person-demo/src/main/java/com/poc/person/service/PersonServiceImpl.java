@@ -1,6 +1,7 @@
 package com.poc.person.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class PersonServiceImpl implements PersonService{
 		
 	
 	/**
-	 * 
+	 * To get list of all persons 
 	 * @return
 	 * @throws PersonException
 	 */
@@ -34,24 +35,51 @@ public class PersonServiceImpl implements PersonService{
 		throw new PersonException("No Persons found");
 	}
 
+	/**
+	 * To update person details with given ID
+	 */
 	@Override
-	public PersonVO updatePersonDetails(long id, PersonVO personVO) {
-		// TODO Auto-generated method stub
-		return null;
+	public PersonVO updatePersonDetails(final long id, PersonVO personVO) throws PersonException {
+		Optional<Person> personDO = personRepository.findById(id);
+		Person person = null;
+		if(personDO.isPresent()) {
+			person = personMapper.mapPersonVOtoDO(personVO);
+			person.setId(id);
+			Person updatedPerson = personRepository.save(person);
+			return personMapper.mapPersonDOtoVO(updatedPerson);
+		}else {
+			throw new PersonException("Person details not found to update");
+		}				
 	}
 
+	/**
+	 * To delete the Person with given Id
+	 */
 	@Override
-	public PersonVO deletePerson(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deletePerson(long id) throws PersonException {
+		Optional<Person> personDO = personRepository.findById(id);
+		if(personDO.isPresent()) {
+			personRepository.deleteById(id);
+		}else {
+			throw new PersonException("Person details not found to delete");
+		}		
 	}
 
+	/**
+	 * To get the List of Persons whose age greater than given value
+	 */
 	@Override
-	public List<PersonVO> getPersonsByAge() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PersonVO> getPersonsByAge(int age) throws PersonException {
+		List<Person> persons = personRepository.findPersonByAge(age);
+		if(null != persons && !persons.isEmpty()) {
+			return personMapper.mapPersonDOtoList(persons);
+		}
+		throw new PersonException("No Persons found");
 	}
 
+	/**
+	 * To create a person with given Person details
+	 */
 	@Override
 	public PersonVO createPerson(PersonVO personVO) {
 		
