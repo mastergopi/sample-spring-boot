@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "18380843-fd4b-4fbe-adaf-84649bb198e0",
+		"name": "Person-requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/createPerson",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"vimal\",\r\n    \"lastName\": \"raj\",\r\n    \"gender\": \"M\",\r\n    \"age\": 35\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/createPerson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"createPerson"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/persons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/persons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"persons"
+					]
+				},
+				"description": "To get the list of persons saved"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/updatePerson/1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\" : \"vimal\",\n\t\"lastName\" : \"raj\",\n\t\"gender\" : \"M\",\n\t\"age\" : 35\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/updatePerson/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"updatePerson",
+						"1"
+					]
+				},
+				"description": "to update the existing Person details by passing the ID in the URL (updatedPerson/{id})"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/getPersonsByAge/20",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/getPersonsByAge/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getPersonsByAge",
+						"20"
+					]
+				},
+				"description": "to get the List of persons whose Age is greated than given value in the URL (getPersonsByAge/{age})"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/deletePerson/2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/deletePerson/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"deletePerson",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
