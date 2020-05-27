@@ -13,7 +13,18 @@ public class PersonVO {
 	
 	private int age;
 	
+	public PersonVO (long id, String firstName, String lastName,char gender, int age) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.age = age;
+	}
 	
+	public PersonVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @return the id
 	 */

@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.poc.person.dao.model.Person;
-import com.poc.person.exception.PersonException;
+import com.poc.person.exception.PersonExceptionHandler;
+import com.poc.person.exception.PersonNotFoundException;
 import com.poc.person.mapper.PersonMapper;
 import com.poc.person.model.PersonVO;
 import com.poc.person.repository.PersonRepository;
@@ -25,21 +26,21 @@ public class PersonServiceImpl implements PersonService{
 	/**
 	 * To get list of all persons 
 	 * @return
-	 * @throws PersonException
+	 * @throws PersonNotFoundException
 	 */
-	public List<PersonVO> getAllPersonDetails() throws PersonException{
+	public List<PersonVO> getAllPersonDetails(){
 		List<Person> persons = personRepository.findAll();
 		if(null != persons && !persons.isEmpty()) {
 			return personMapper.mapPersonDOtoList(persons);
 		}
-		throw new PersonException("No Persons found");
+		throw new PersonNotFoundException("No Persons found");
 	}
 
 	/**
 	 * To update person details with given ID
 	 */
 	@Override
-	public PersonVO updatePersonDetails(final long id, PersonVO personVO) throws PersonException {
+	public PersonVO updatePersonDetails(final long id, PersonVO personVO) {
 		Optional<Person> personDO = personRepository.findById(id);
 		Person person = null;
 		if(personDO.isPresent()) {
@@ -48,7 +49,7 @@ public class PersonServiceImpl implements PersonService{
 			Person updatedPerson = personRepository.save(person);
 			return personMapper.mapPersonDOtoVO(updatedPerson);
 		}else {
-			throw new PersonException("Person details not found to update");
+			throw new PersonNotFoundException("Person details not found to update");
 		}				
 	}
 
@@ -56,12 +57,12 @@ public class PersonServiceImpl implements PersonService{
 	 * To delete the Person with given Id
 	 */
 	@Override
-	public void deletePerson(long id) throws PersonException {
+	public void deletePerson(long id){
 		Optional<Person> personDO = personRepository.findById(id);
 		if(personDO.isPresent()) {
 			personRepository.deleteById(id);
 		}else {
-			throw new PersonException("Person details not found to delete");
+			throw new PersonNotFoundException("Person details not found to delete");
 		}		
 	}
 
@@ -69,12 +70,12 @@ public class PersonServiceImpl implements PersonService{
 	 * To get the List of Persons whose age greater than given value
 	 */
 	@Override
-	public List<PersonVO> getPersonsByAge(int age) throws PersonException {
+	public List<PersonVO> getPersonsByAge(int age){
 		List<Person> persons = personRepository.findPersonByAge(age);
 		if(null != persons && !persons.isEmpty()) {
 			return personMapper.mapPersonDOtoList(persons);
 		}
-		throw new PersonException("No Persons found");
+		throw new PersonNotFoundException("No Persons found");
 	}
 
 	/**
