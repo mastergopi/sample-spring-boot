@@ -52,9 +52,7 @@ public class PersonControllerTest {
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-		MockHttpServletResponse response = result.getResponse();
-
-		assertEquals(HttpStatus.OK.value(), response.getStatus());
+		assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
 	}
 
 	@Test
@@ -69,9 +67,7 @@ public class PersonControllerTest {
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-		MockHttpServletResponse response = result.getResponse();
-
-		assertEquals(HttpStatus.OK.value(), response.getStatus());
+		assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
 	}
 
 	@Test
