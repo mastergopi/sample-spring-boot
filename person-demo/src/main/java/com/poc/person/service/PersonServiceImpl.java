@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.poc.person.dao.model.Person;
-import com.poc.person.exception.PersonExceptionHandler;
 import com.poc.person.exception.PersonNotFoundException;
 import com.poc.person.mapper.PersonMapper;
 import com.poc.person.model.PersonVO;
